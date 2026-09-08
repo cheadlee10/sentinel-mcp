@@ -10,9 +10,6 @@ packets. It complements licensed MLS data; it does not replace an MLS feed.
 [OpenAPI](https://app.sentineliq.net/api/v1/agent-api/openapi.json) ·
 [Developer terms](https://sentineliq.net/developers/terms)
 
-This is a release companion. Publish the package only after the matching backend
-and developer pages have been deployed and the submission checklist passes.
-
 ## Try without an account
 
 ```bash
@@ -46,7 +43,7 @@ standard residential transfer; verify the location code and applicable rules.
 | wa_seller_packet | POST /seller-packet | Key |
 
 The three public REST calculators use /api/v1/public/ instead. Tools do not
-create deals, change CRM records or send messages. Successful keyed answers
+create deals, change CRM records or send messages. Successful keyed calls
 update the account's usage ledger.
 
 REST field names use snake_case. MCP arguments use camelCase; inspect tools/list
@@ -118,7 +115,7 @@ MCP-Protocol-Version header thereafter. The supported structured-result
 revisions return structuredContent and outputSchema alongside text content.
 Inspect the negotiated capabilities rather than assuming a client version.
 
-Initialize, discovery and notifications do not consume successful-answer quota.
+Initialize, discovery and notifications do not consume successful-call quota.
 Business failures appear as result.isError with a text error; protocol errors
 use JSON-RPC errors. Preserve X-Request-Id when contacting support.
 

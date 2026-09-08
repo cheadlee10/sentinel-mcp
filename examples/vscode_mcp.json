@@ -1,0 +1,8 @@
+{
+  "servers": {
+    "sentinel": {
+      "type": "http",
+      "url": "https://app.sentineliq.net/api/v1/mcp/public"
+    }
+  }
+}

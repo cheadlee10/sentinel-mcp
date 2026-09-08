@@ -1,0 +1,23 @@
+{
+  "_comment": "Claude Desktop. Prefer Settings > Connectors > Add custom connector and paste https://app.sentineliq.net/api/v1/mcp/public — no config file needed. This file is the fallback for a build that only speaks stdio: it bridges the HTTP transport with the third-party npm package `mcp-remote`, which is not maintained by SENTINEL. macOS: ~/Library/Application Support/Claude/claude_desktop_config.json — Windows: %APPDATA%\\Claude\\claude_desktop_config.json. Keep ONE entry and delete the other plus these _comment keys.",
+  "mcpServers": {
+    "sentinel": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://app.sentineliq.net/api/v1/mcp/public"
+      ]
+    },
+    "sentinel-keyed": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://app.sentineliq.net/api/v1/mcp",
+        "--header",
+        "Authorization: Bearer agk_YOUR_KEY_HERE"
+      ]
+    }
+  }
+}

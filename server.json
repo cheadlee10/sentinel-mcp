@@ -1,0 +1,101 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.cheadlee10/sentinel-wa-realestate",
+  "title": "SENTINEL Washington Real Estate",
+  "description": "Washington property evidence and transaction math for software and AI assistants.",
+  "version": "1.5.1",
+  "websiteUrl": "https://sentineliq.net/developers?utm_source=mcp_registry&utm_medium=referral&utm_campaign=sentinel_api_launch_202609&utm_content=registry",
+  "repository": {
+    "url": "https://github.com/cheadlee10/sentinel-mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://app.sentineliq.net/api/v1/mcp/public"
+    },
+    {
+      "type": "streamable-http",
+      "url": "https://app.sentineliq.net/api/v1/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Bearer token: 'Bearer agk_...'. Create a key at https://sentineliq.net/developers/console. Required for data and workflow tools.",
+          "isRequired": true,
+          "isSecret": true,
+          "format": "string"
+        }
+      ]
+    }
+  ],
+  "_meta": {
+    "io.modelcontextprotocol.registry/publisher-provided": {
+      "io.sentineliq/endpoints": {
+        "public": {
+          "url": "https://app.sentineliq.net/api/v1/mcp/public",
+          "auth": "none",
+          "tools": [
+            "wa_reet",
+            "wa_net_sheet",
+            "nwmls_deadlines"
+          ],
+          "limits": "60 requests/minute and 500/day per client IP"
+        },
+        "keyed": {
+          "url": "https://app.sentineliq.net/api/v1/mcp",
+          "auth": "Authorization: Bearer agk_...",
+          "tools": [
+            "wa_research_packet",
+            "wa_property_changes",
+            "wa_local_context",
+            "wa_site_context",
+            "wa_reet",
+            "wa_net_sheet",
+            "nwmls_deadlines",
+            "wa_property_lookup",
+            "wa_permit_history",
+            "wa_market_snapshot",
+            "wa_compare_seller_scenarios",
+            "wa_compare_offers",
+            "wa_monthly_payment",
+            "wa_seller_packet"
+          ],
+          "limits": "60 requests/minute per key; 2000 served answers per rolling 24h per account"
+        }
+      },
+      "io.sentineliq/coverage": {
+        "property_records": [
+          "King",
+          "Pierce",
+          "Snohomish",
+          "Whatcom"
+        ],
+        "calculator_counties": [
+          "clark",
+          "cowlitz",
+          "island",
+          "king",
+          "kitsap",
+          "lewis",
+          "mason",
+          "pierce",
+          "skagit",
+          "snohomish",
+          "whatcom"
+        ],
+        "note": "Property records cover four Washington counties only. The REET and net-sheet calculators know local rates for eleven counties; that is a rate table, not data coverage."
+      },
+      "io.sentineliq/not_included": [
+        "Independent field-by-field verification of historical building attributes is not available. Cached values may include earlier enrichment; preserve interior_provenance_status and provenance_note. Known portal backfills are omitted.",
+        "Owner and taxpayer names, mailing addresses, owner-status classification, and equity estimates are not included in this version.",
+        "Listing links, photos and portal automated valuations are absent. Status, price and related fields are available only for a matched licensed listing already on file; null means no licensed listing on file.",
+        "No bulk export, batch endpoint, or area enumeration; every property lookup is per-address.",
+        "No lead, distress, delinquency, foreclosure, probate, or court signals. Permit coverage is limited to the connected jurisdictions named in each response and never proves an absence of permits.",
+        "No skip trace, phone or email append, or contact lookup."
+      ],
+      "io.sentineliq/attribution": "Responses carry an 'attributions' array; entries marked required:true (Pierce County, Whatcom County, Redfin) must be reproduced wherever the data is displayed. Not affiliated with or endorsed by NWMLS, the Washington Department of Revenue, or any county.",
+      "io.sentineliq/read_only": "Tools do not change customer records or send messages. Successful keyed answers update the account usage ledger.",
+      "io.sentineliq/openapi": "https://app.sentineliq.net/api/v1/agent-api/openapi.json"
+    }
+  }
+}

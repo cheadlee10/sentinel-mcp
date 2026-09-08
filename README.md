@@ -198,7 +198,8 @@ changing customer records. They will make network requests when you run them.
 
 ## Access and limits
 
-Public calculators: 60 requests/minute and 500/day per public client IP.
+Public REST calculators: 60 requests/minute and 5,000/day per public client IP.
+Public MCP: 60 requests/minute and 500/day per public client IP.
 Keyed tools: 60 requests/minute per key; 2,000 successful calls per rolling
 24 hours per account, shared across REST and MCP. Five active keys per account.
 The trial includes 25 lifetime successful calls. Failed requests, validation

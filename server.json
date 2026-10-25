@@ -2,8 +2,8 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.cheadlee10/sentinel-wa-realestate",
   "title": "SENTINEL Washington Real Estate",
-  "description": "Washington property evidence and transaction math for software and AI assistants.",
-  "version": "1.5.1",
+  "description": "Washington property evidence and transaction math for agents in Claude, ChatGPT and AI apps.",
+  "version": "1.6.0",
   "websiteUrl": "https://sentineliq.net/developers?utm_source=mcp_registry&utm_medium=referral&utm_campaign=sentinel_api_launch_202609&utm_content=registry",
   "repository": {
     "url": "https://github.com/cheadlee10/sentinel-mcp",
@@ -20,8 +20,8 @@
       "headers": [
         {
           "name": "Authorization",
-          "description": "Bearer token: 'Bearer agk_...'. Create a key at https://sentineliq.net/developers/console. Required for data and workflow tools.",
-          "isRequired": true,
+          "description": "Optional for clients that sign in with OAuth (Claude, ChatGPT). Otherwise 'Bearer agk_...'; create a key at https://sentineliq.net/developers/console.",
+          "isRequired": false,
           "isSecret": true,
           "format": "string"
         }
@@ -43,7 +43,7 @@
         },
         "keyed": {
           "url": "https://app.sentineliq.net/api/v1/mcp",
-          "auth": "Authorization: Bearer agk_...",
+          "auth": "OAuth 2.1 sign-in (PKCE, dynamic or metadata-document client registration) or Authorization: Bearer agk_...",
           "tools": [
             "wa_research_packet",
             "wa_property_changes",
@@ -60,7 +60,13 @@
             "wa_monthly_payment",
             "wa_seller_packet"
           ],
-          "limits": "60 requests/minute per key; 2000 served answers per rolling 24h per account"
+          "limits": "60 requests/minute per key; 2000 served answers per rolling 24h per account",
+          "pricing": "25 free answers, then Sentinel Connect at $29/month for agents or an integration pilot for developers",
+          "public_tools_without_sign_in": [
+            "wa_reet",
+            "wa_net_sheet",
+            "nwmls_deadlines"
+          ]
         }
       },
       "io.sentineliq/coverage": {

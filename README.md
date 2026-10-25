@@ -10,6 +10,28 @@ packets. It complements licensed MLS data; it does not replace an MLS feed.
 [OpenAPI](https://app.sentineliq.net/api/v1/agent-api/openapi.json) ·
 [Developer terms](https://sentineliq.net/developers/terms)
 
+## Use it in Claude or ChatGPT
+
+For Washington real estate agents. Paste one address into your assistant and
+sign in once; no keys or code.
+
+- **Claude** (claude.ai, Desktop or mobile): Settings, Connectors, Add custom
+  connector. Name it Sentinel and paste `https://app.sentineliq.net/api/v1/mcp`.
+- **ChatGPT** (with developer mode turned on in settings): create a new app,
+  paste the same address and choose OAuth.
+
+The REET, net-sheet and NWMLS deadline calculators work straight away without
+an account. The first time you ask for property, permit or market data, your
+assistant shows a Connect button: sign in to Sentinel (or create an account),
+approve the connection, and the assistant carries on. You get 25 free answers;
+after that, Sentinel Connect is $29 a month and can be cancelled any time from
+the [console](https://sentineliq.net/developers/console), where you can also
+disconnect an assistant.
+
+Try asking: "What's the REET on a $750,000 sale in King County?", "Pull the
+permit history for 123 Main St, Bellingham", or "Build a seller net sheet at
+$725k and $750k with a $420k payoff."
+
 ## Try without an account
 
 ```bash
@@ -54,10 +76,19 @@ for the exact schema. MCP output retains the REST response's field names.
 Public URL: https://app.sentineliq.net/api/v1/mcp/public
 Keyed URL: https://app.sentineliq.net/api/v1/mcp
 
-The public connection exposes three calculators. The keyed connection exposes
-all fourteen tools. Configure Authorization: Bearer agk_... using your client's
-protected credential settings. There is no OAuth sign-in flow. Keys belong on
-a server or in secure local configuration, never shared source files.
+The public connection exposes three calculators. The keyed connection lists
+all fourteen tools and answers the three calculators without credentials. For
+the other tools it accepts either:
+
+- **OAuth sign-in** (Claude, ChatGPT and other clients that support MCP
+  authorization): the server returns 401 with a `WWW-Authenticate` header
+  pointing to `/.well-known/oauth-protected-resource`. Sentinel's authorization
+  server supports PKCE (S256), dynamic client registration and client ID
+  metadata documents. Each approved connection appears in the console as
+  "Connected app: name" and can be revoked there.
+- **An API key**: `Authorization: Bearer agk_...` set in your client's protected
+  credential settings. Keys belong on a server or in secure local configuration,
+  never shared source files.
 
 ### Cursor
 
@@ -207,7 +238,12 @@ failures, not-found misses and whoami checks do not consume that allowance.
 GET /api/v1/agent-api/v1/whoami is an unmetered identity/usage check.
 
 Existing paid accounts retain their API access and published account allowance.
-The current entry points are a trial key and a directly arranged integration pilot.
+The current entry points are the 25-answer trial, Sentinel Connect and the
+integration pilot.
+
+**Sentinel Connect, $29 a month**, is for agents using Sentinel inside Claude
+or ChatGPT: the full keyed catalog with the account allowance above, renewing
+monthly until cancelled from the console.
 
 The optional **$250, 30-day integration pilot** covers one agreed workflow,
 one developer account with up to five integration keys, setup help and a

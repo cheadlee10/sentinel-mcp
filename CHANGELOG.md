@@ -1,6 +1,17 @@
 # Changelog
 
-## 1.5.1 — current production release
+## 1.6.0 — sign in from Claude and ChatGPT
+
+- The keyed MCP URL accepts OAuth 2.1 sign-in (PKCE, dynamic client
+  registration, client ID metadata documents) as well as API keys, so agents
+  can add Sentinel as a custom connector in Claude or an app in ChatGPT.
+- Without credentials the keyed URL lists all tools and answers the three
+  calculators; other tools return 401 with a protected-resource pointer.
+- When free answers run out, the tool result says so and links to the console
+  instead of returning an HTTP error.
+- New Sentinel Connect plan for agents, $29 a month.
+
+## 1.5.1
 
 - Added the source-backed `wa_research_packet` workflow and immutable captured
   permit-history tool `wa_property_changes`; the keyed catalog now contains

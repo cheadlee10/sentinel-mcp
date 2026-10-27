@@ -1,6 +1,25 @@
 # Changelog
 
-## 1.5.1 — current production release
+## 1.6.0 — sign in from Claude and ChatGPT
+
+- The keyed MCP URL accepts OAuth 2.1 sign-in (PKCE, dynamic client
+  registration, client ID metadata documents) as well as API keys, so agents
+  can add Sentinel as a custom connector in Claude or an app in ChatGPT.
+- Without credentials the keyed URL lists all tools and answers the three
+  calculators; other tools return 401 with a protected-resource pointer.
+- When free answers run out, the tool result says so and links to the console
+  instead of returning an HTTP error.
+- New Sentinel Connect plan for agents, $29 a month.
+- New `wa_market_trends` tool: licensed Washington market trends (FHFA House
+  Price Index; Realtor.com listing inventory once its terms are confirmed),
+  each value with its source.
+- New `wa_sale_history` tool: recorded sale dates and prices for one Pierce or
+  Snohomish County parcel from the county assessor's published records, with
+  validity codes and no party names. The keyed catalog is now sixteen tools.
+- `wa_market_snapshot` is paused and unbilled; seller packets fill their market
+  section from market trends instead.
+
+## 1.5.1
 
 - Added the source-backed `wa_research_packet` workflow and immutable captured
   permit-history tool `wa_property_changes`; the keyed catalog now contains

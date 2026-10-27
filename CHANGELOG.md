@@ -12,7 +12,10 @@
 - New Sentinel Connect plan for agents, $29 a month.
 - New `wa_market_trends` tool: licensed Washington market trends (FHFA House
   Price Index; Realtor.com listing inventory once its terms are confirmed),
-  each value with its source. The keyed catalog is now fifteen tools.
+  each value with its source.
+- New `wa_sale_history` tool: recorded sale dates and prices for one Pierce or
+  Snohomish County parcel from the county assessor's published records, with
+  validity codes and no party names. The keyed catalog is now sixteen tools.
 - `wa_market_snapshot` is paused and unbilled; seller packets fill their market
   section from market trends instead.
 

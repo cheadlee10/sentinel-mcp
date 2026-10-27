@@ -71,7 +71,7 @@ def mcp_call(tool: str, arguments: dict, *, key: str | None = None) -> dict:
     """Call one MCP tool over JSON-RPC.
 
     Without a key this hits the authless transport, which serves the three
-    calculators. With a key it hits the full fifteen-tool transport.
+    calculators. With a key it hits the full sixteen-tool transport.
 
     Tool failures are NOT JSON-RPC errors: they arrive as result.isError = true
     with a {"code", "message"} text block.

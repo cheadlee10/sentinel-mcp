@@ -59,6 +59,7 @@ standard residential transfer; verify the location code and applicable rules.
 | nwmls_deadlines | POST /deadlines | Public or key |
 | wa_property_lookup | GET /property | Key |
 | wa_permit_history | GET /permit-history | Key |
+| wa_sale_history | GET /sale-history | Key |
 | wa_market_trends | GET /market-trends | Key |
 | wa_market_snapshot | GET /market | Key (paused) |
 | wa_compare_seller_scenarios | POST /seller-scenarios | Key |
@@ -79,7 +80,7 @@ Public URL: https://app.sentineliq.net/api/v1/mcp/public
 Keyed URL: https://app.sentineliq.net/api/v1/mcp
 
 The public connection exposes three calculators. The keyed connection lists
-all fifteen tools and answers the three calculators without credentials. For
+all sixteen tools and answers the three calculators without credentials. For
 the other tools it accepts either:
 
 - **OAuth sign-in** (Claude, ChatGPT and other clients that support MCP
@@ -224,6 +225,9 @@ changing customer records. They will make network requests when you run them.
 - Listing links, photos and portal automated valuations are not returned.
 - Owner identity, mailing addresses, absentee classifications and equity
   estimates are excluded. No list export, bulk enumeration or lead feed exists.
+- Recorded sale history (wa_sale_history) for one Pierce or Snohomish County
+  parcel: up to three years of county assessor sale dates and prices, with
+  validity codes and no buyer, seller or owner names.
 - Market trends (wa_market_trends) answer for a Washington ZIP, county, city
   (as its ZIP codes) or metro from sources whose reuse terms are recorded: the
   FHFA House Price Index (an appreciation index, not a dollar price) and, once

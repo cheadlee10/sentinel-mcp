@@ -1,11 +1,14 @@
 name: Publish to MCP Registry
 
-# Run by hand from the Actions tab (or on a v* tag) to list or update
-# server.json in the official MCP Registry. Signs in with GitHub OIDC, so the
-# repository needs no secret.
+# Lists or updates server.json in the official MCP Registry whenever a change
+# to server.json (or this workflow) lands on main, on a v* tag, or when run by
+# hand from the Actions tab. Signs in with GitHub OIDC, so the repository
+# needs no secret.
 on:
   workflow_dispatch:
   push:
+    branches: [main]
+    paths: ["server.json", ".github/workflows/publish-mcp.yml"]
     tags: ["v*"]
 
 jobs:

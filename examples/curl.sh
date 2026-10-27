@@ -98,7 +98,7 @@ curl -s -G "$BASE/api/v1/agent-api/v1/market" \
   --data-urlencode 'area=98103' \
   --data-urlencode 'region_type=zip' | pretty
 
-# Keyed MCP — all fourteen tools.
+# Keyed MCP — all fifteen tools.
 hr "POST /api/v1/mcp  tools/list  (keyed)"
 curl -s "$BASE/api/v1/mcp" \
   -H 'Content-Type: application/json' \

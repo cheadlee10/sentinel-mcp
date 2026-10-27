@@ -10,6 +10,11 @@
 - When free answers run out, the tool result says so and links to the console
   instead of returning an HTTP error.
 - New Sentinel Connect plan for agents, $29 a month.
+- New `wa_market_trends` tool: licensed Washington market trends (FHFA House
+  Price Index; Realtor.com listing inventory once its terms are confirmed),
+  each value with its source. The keyed catalog is now fifteen tools.
+- `wa_market_snapshot` is paused and unbilled; seller packets fill their market
+  section from market trends instead.
 
 ## 1.5.1
 

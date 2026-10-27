@@ -54,6 +54,7 @@
             "nwmls_deadlines",
             "wa_property_lookup",
             "wa_permit_history",
+            "wa_market_trends",
             "wa_market_snapshot",
             "wa_compare_seller_scenarios",
             "wa_compare_offers",

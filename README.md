@@ -29,8 +29,9 @@ the [console](https://sentineliq.net/developers/console), where you can also
 disconnect an assistant.
 
 Try asking: "What's the REET on a $750,000 sale in King County?", "Pull the
-permit history for 123 Main St, Bellingham", or "Build a seller net sheet at
-$725k and $750k with a $420k payoff."
+permit history for 123 Main St, Bellingham", "How have home prices in King
+County changed?" or "Build a seller net sheet at $725k and $750k with a $420k
+payoff."
 
 ## Try without an account
 
@@ -58,7 +59,8 @@ standard residential transfer; verify the location code and applicable rules.
 | nwmls_deadlines | POST /deadlines | Public or key |
 | wa_property_lookup | GET /property | Key |
 | wa_permit_history | GET /permit-history | Key |
-| wa_market_snapshot | GET /market | Key |
+| wa_market_trends | GET /market-trends | Key |
+| wa_market_snapshot | GET /market | Key (paused) |
 | wa_compare_seller_scenarios | POST /seller-scenarios | Key |
 | wa_compare_offers | POST /offers/compare | Key |
 | wa_monthly_payment | POST /monthly-payment | Key |
@@ -77,7 +79,7 @@ Public URL: https://app.sentineliq.net/api/v1/mcp/public
 Keyed URL: https://app.sentineliq.net/api/v1/mcp
 
 The public connection exposes three calculators. The keyed connection lists
-all fourteen tools and answers the three calculators without credentials. For
+all fifteen tools and answers the three calculators without credentials. For
 the other tools it accepts either:
 
 - **OAuth sign-in** (Claude, ChatGPT and other clients that support MCP
@@ -182,7 +184,9 @@ explicitly no seller credits:
 
 POST this body to /api/v1/agent-api/v1/seller-packet with your bearer key.
 The response includes report_markdown, structured scenarios, section statuses,
-gaps, generation time and provenance. Property and market inputs are optional.
+gaps, generation time and provenance. Property and market inputs are optional;
+while sale-price snapshots are paused, a market input is answered from licensed
+market trends in the market_trends field.
 The packet is not an appraisal or CMA and does not fetch comparable sales.
 
 Omitted or null mortgage_balance and concessions mean unknown. Explicit 0
@@ -220,8 +224,15 @@ changing customer records. They will make network requests when you run them.
 - Listing links, photos and portal automated valuations are not returned.
 - Owner identity, mailing addresses, absentee classifications and equity
   estimates are excluded. No list export, bulk enumeration or lead feed exists.
-- Market snapshots carry source dates and freshness warnings. A stale snapshot
-  is historical context, not a current observation.
+- Market trends (wa_market_trends) answer for a Washington ZIP, county, city
+  (as its ZIP codes) or metro from sources whose reuse terms are recorded: the
+  FHFA House Price Index (an appreciation index, not a dollar price) and, once
+  its terms are confirmed, Realtor.com monthly listing inventory (asking
+  prices, not closed sales). Each block names its publisher, period, source
+  file hash and required notice. Areas without licensed figures are free.
+- Sale-price market snapshots (wa_market_snapshot) are paused while their
+  source's terms are reviewed. Calls return an unavailable error and are not
+  charged.
 - Carry through attribution entries marked required and all relevant assumptions
   and disclaimers. The [developer terms](https://sentineliq.net/developers/terms)
   apply to source data and API use; the example-code license does not grant

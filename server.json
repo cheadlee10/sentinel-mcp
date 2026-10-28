@@ -3,8 +3,8 @@
   "name": "io.github.cheadlee10/sentinel-wa-realestate",
   "title": "SENTINEL Washington Real Estate",
   "description": "Washington property evidence and transaction math for agents in Claude, ChatGPT and AI apps.",
-  "version": "1.6.0",
-  "websiteUrl": "https://sentineliq.net/developers?utm_source=mcp_registry&utm_medium=referral&utm_campaign=sentinel_api_launch_202609&utm_content=registry",
+  "version": "1.7.0",
+  "websiteUrl": "https://sentineliq.net/mcp?utm_source=mcp_registry&utm_medium=referral&utm_campaign=sentinel_api_launch_202609&utm_content=registry",
   "repository": {
     "url": "https://github.com/cheadlee10/sentinel-mcp",
     "source": "github"
@@ -20,7 +20,7 @@
       "headers": [
         {
           "name": "Authorization",
-          "description": "Optional for clients that sign in with OAuth (Claude, ChatGPT). Otherwise 'Bearer agk_...'; create a key at https://sentineliq.net/developers/console.",
+          "description": "Optional for clients that sign in with OAuth (Claude, ChatGPT). Otherwise 'Bearer agk_...'; start a free 7-day trial (no card) and get a key at https://sentineliq.net/mcp.",
           "isRequired": false,
           "isSecret": true,
           "format": "string"
@@ -55,6 +55,7 @@
             "wa_property_lookup",
             "wa_permit_history",
             "wa_sale_history",
+            "wa_comps",
             "wa_market_trends",
             "wa_market_snapshot",
             "wa_compare_seller_scenarios",
@@ -63,7 +64,7 @@
             "wa_seller_packet"
           ],
           "limits": "60 requests/minute per key; 2000 served answers per rolling 24h per account",
-          "pricing": "25 free answers, then Sentinel Connect at $29/month for agents or an integration pilot for developers",
+          "pricing": "Free 7-day trial with no card (sign up at https://sentineliq.net/mcp), then Sentinel Connect at $29/month for agents or an integration pilot for developers",
           "public_tools_without_sign_in": [
             "wa_reet",
             "wa_net_sheet",

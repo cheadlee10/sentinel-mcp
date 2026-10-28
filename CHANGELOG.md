@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.7.0 — 7-day free trial, no card
+
+- New accounts get a free 7-day trial with no card (up to 200 answers a day),
+  in place of 25 lifetime answers. Start one with an email at
+  https://sentineliq.net/mcp; the page shows the server address with a copy
+  button and, after the email link, a key ready to paste into any agent.
+- After the trial, keyed tools return `TRIAL_ENDED` with a link to the $29 a
+  month Sentinel Connect checkout. `TRIAL_QUOTA_EXHAUSTED` is retired.
+- A signed-out call to a keyed tool now says how to start the trial (401 body
+  `message` and `signup_url`), and `initialize` returns server `instructions`.
+- New `wa_comps` tool: comparable recorded Pierce and Snohomish sales by
+  radius, neighborhood outline or ZIP, with medians, price per sq ft, a trend
+  and a chart link. The keyed catalog is now seventeen tools.
+
 ## 1.6.0 — sign in from Claude and ChatGPT
 
 - The keyed MCP URL accepts OAuth 2.1 sign-in (PKCE, dynamic client

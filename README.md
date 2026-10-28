@@ -23,8 +23,8 @@ sign in once; no keys or code.
 The REET, net-sheet and NWMLS deadline calculators work straight away without
 an account. The first time you ask for property, permit or market data, your
 assistant shows a Connect button: sign in to Sentinel (or create an account),
-approve the connection, and the assistant carries on. You get 25 free answers;
-after that, Sentinel Connect is $29 a month and can be cancelled any time from
+approve the connection, and the assistant carries on. The first 7 days are
+free with no card; after that, Sentinel Connect is $29 a month and can be cancelled any time from
 the [console](https://sentineliq.net/developers/console), where you can also
 disconnect an assistant.
 
@@ -60,6 +60,7 @@ standard residential transfer; verify the location code and applicable rules.
 | wa_property_lookup | GET /property | Key |
 | wa_permit_history | GET /permit-history | Key |
 | wa_sale_history | GET /sale-history | Key |
+| wa_comps | POST /comps | Key |
 | wa_market_trends | GET /market-trends | Key |
 | wa_market_snapshot | GET /market | Key (paused) |
 | wa_compare_seller_scenarios | POST /seller-scenarios | Key |
@@ -80,7 +81,7 @@ Public URL: https://app.sentineliq.net/api/v1/mcp/public
 Keyed URL: https://app.sentineliq.net/api/v1/mcp
 
 The public connection exposes three calculators. The keyed connection lists
-all sixteen tools and answers the three calculators without credentials. For
+all seventeen tools and answers the three calculators without credentials. For
 the other tools it accepts either:
 
 - **OAuth sign-in** (Claude, ChatGPT and other clients that support MCP
@@ -248,12 +249,16 @@ Public REST calculators: 60 requests/minute and 5,000/day per public client IP.
 Public MCP: 60 requests/minute and 500/day per public client IP.
 Keyed tools: 60 requests/minute per key; 2,000 successful calls per rolling
 24 hours per account, shared across REST and MCP. Five active keys per account.
-The trial includes 25 lifetime successful calls. Failed requests, validation
-failures, not-found misses and whoami checks do not consume that allowance.
+New accounts get a free 7-day trial with no card, up to 200 successful calls a
+day. Start one with just an email at https://sentineliq.net/mcp; the key it
+shows goes in the Authorization header for agents that cannot sign in. After
+the trial, calls return TRIAL_ENDED with a link to the $29 Sentinel Connect
+checkout. Failed requests, validation failures, not-found misses and whoami
+checks do not count.
 GET /api/v1/agent-api/v1/whoami is an unmetered identity/usage check.
 
 Existing paid accounts retain their API access and published account allowance.
-The current entry points are the 25-answer trial, Sentinel Connect and the
+The current entry points are the 7-day free trial, Sentinel Connect and the
 integration pilot.
 
 **Sentinel Connect, $29 a month**, is for agents using Sentinel inside Claude
